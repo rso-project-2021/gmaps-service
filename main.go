@@ -3,6 +3,7 @@ package main
 import (
 	"gmaps-service/api"
 	"gmaps-service/config"
+	"gmaps-service/proto"
 	"log"
 	"net"
 
@@ -23,22 +24,24 @@ func main() {
 		log.Fatal("Failed to create a server: ", err)
 	}
 
-	// Start a server.
-	if err := server.Start(config.ServerAddress); err != nil {
-		log.Fatal("Failed to start a server: ", err)
-	}
-
 	// Run gRPC server concurrently.
 	go func() {
-
-		lis, err := net.Listen("tcp", ":9000")
+		lis, err := net.Listen("tcp", config.GrpcAddress)
 		if err != nil {
 			log.Fatalf("Failed to listen: %v", err)
 		}
 
+		s := api.ServerGRPC{}
 		grpcServer := grpc.NewServer()
+
+		proto.RegisterLocationServiceServer(grpcServer, &s)
 		if err := grpcServer.Serve(lis); err != nil {
 			log.Fatalf("gRPC server failed: %v", err)
 		}
 	}()
+
+	// Start a server.
+	if err := server.Start(config.ServerAddress); err != nil {
+		log.Fatal("Failed to start a server: ", err)
+	}
 }

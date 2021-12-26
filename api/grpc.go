@@ -1,14 +1,17 @@
 package api
 
 import (
-	"context"
 	"gmaps-service/proto"
 	"log"
+
+	"golang.org/x/net/context"
 )
 
-type ServerGRPC struct{}
+type ServerGRPC struct {
+	proto.UnimplementedLocationServiceServer
+}
 
-func (server *ServerGRPC) FindClosest(ctx context.Context, in *proto.LocationRequest) (*proto.Location, error) {
+func (s *ServerGRPC) FindClosest(ctx context.Context, in *proto.LocationRequest) (*proto.Location, error) {
 	log.Printf("ID = %d, lat = %.3f, lng = %.3f", in.MyLocation.Id, in.MyLocation.Lat, in.MyLocation.Lng)
 	return &proto.Location{
 		Id:  42,

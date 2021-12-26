@@ -6,6 +6,7 @@ require (
 	github.com/gin-gonic/gin v1.7.4
 	github.com/prometheus/client_golang v1.11.0
 	github.com/spf13/viper v1.9.0
+	golang.org/x/net v0.0.0-20211216030914-fe4d6282115f
 	google.golang.org/grpc v1.43.0
 	google.golang.org/protobuf v1.27.1
 )
@@ -39,7 +40,6 @@ require (
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
-	golang.org/x/net v0.0.0-20211216030914-fe4d6282115f // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20211223182754-3ac035c7e7cb // indirect
