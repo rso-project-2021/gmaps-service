@@ -38,7 +38,7 @@ func (s *ServerGRPC) FindClosest(ctx context.Context, in *proto.LocationRequest)
 
 	var destinations []string
 	for _, loc := range in.Destinations {
-		destinations = append(destinations, fmt.Sprintf("%f,%f", loc.Lat, loc.Lng)) // note the = instead of :=
+		destinations = append(destinations, fmt.Sprintf("%f,%f", loc.Lat, loc.Lng))
 	}
 
 	req := &maps.DistanceMatrixRequest{
