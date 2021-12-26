@@ -31,7 +31,7 @@ func main() {
 			log.Fatalf("Failed to listen: %v", err)
 		}
 
-		s := api.ServerGRPC{}
+		s := api.NewGrpcServer(config)
 		grpcServer := grpc.NewServer()
 
 		proto.RegisterLocationServiceServer(grpcServer, &s)

@@ -5,6 +5,7 @@ import (
 )
 
 type Config struct {
+	MapsKey       string `mapstructure:"maps_key"`
 	GrpcAddress   string `mapstructure:"grpc_address"`
 	ServerAddress string `mapstructure:"server_address"`
 	GinMode       string `mapstructure:"gin_mode"`
