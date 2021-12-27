@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-service-service
+  name: gmaps-service-service
 spec:
   selector:
-    app: user-service
+    app: gmaps-service
   ports:
     - protocol: TCP
       port: 80

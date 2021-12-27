@@ -1,21 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service-deployment
+  name: gmaps-service-deployment
   labels:
-    app: user-service
+    app: gmaps-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: user-service
+      app: gmaps-service
   template:
     metadata:
       labels:
-        app: user-service
+        app: gmaps-service
     spec:
       containers:
-      - name: user-service
-        image: 092356264921.dkr.ecr.eu-central-1.amazonaws.com/user-service:d651327269de64c26c013b6487dfa2aaf88b418f
+      - name: gmaps-service
+        image: 092356264921.dkr.ecr.eu-central-1.amazonaws.com/gmaps-service:d651327269de64c26c013b6487dfa2aaf88b418f
         ports:
         - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health/live
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
