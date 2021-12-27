@@ -16,18 +16,7 @@ spec:
     spec:
       containers:
       - name: gmaps-service
-        image: 092356264921.dkr.ecr.eu-central-1.amazonaws.com/gmaps-service:d651327269de64c26c013b6487dfa2aaf88b418f
+        image: 092356264921.dkr.ecr.eu-central-1.amazonaws.com/gmaps-service:4c6e741e41ad03400ca271df1b2d2a9604f9f621
         ports:
         - containerPort: 8080
-        livenessProbe:
-          httpGet:
-            path: /health/live
-            port: 8080
-          initialDelaySeconds: 10
-          periodSeconds: 5
-        readinessProbe:
-          httpGet:
-            path: /health/ready
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        - containerPort: 9000

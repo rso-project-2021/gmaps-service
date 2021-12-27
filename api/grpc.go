@@ -23,6 +23,7 @@ func NewGrpcServer(config config.Config) ServerGRPC {
 }
 
 func (s *ServerGRPC) FindClosest(ctx context.Context, in *proto.LocationRequest) (*proto.Location, error) {
+	log.Println("gRPC called!")
 
 	// No destinations means we can't return anything.
 	if len(in.Destinations) == 0 {
